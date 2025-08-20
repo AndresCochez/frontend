@@ -4,7 +4,10 @@ import Login from './components/Login.vue'
 import OrdersView from './components/OrdersView.vue'
 import OrderDetail from './components/OrderDetail.vue'
 
-const API = 'http://localhost:5000'
+const API = (import.meta.env.VITE_API_URL || localStorage.getItem('API_URL') || 'http://localhost:5000')
+  .toString()
+  .trim()
+
 
 const isLoggedIn = ref(localStorage.getItem('loggedIn') === 'true')
 const activeTab = ref(isLoggedIn.value ? 'overzicht' : 'login')
