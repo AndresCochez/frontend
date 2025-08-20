@@ -1,0 +1,119 @@
+:root{--sb-green:#006241;--sb-forest:#1E3932;--sb-foam:#D4E9E2;
+  --bg:#ffffff; --surface:#f8f9fb; --text:#0f172a; --muted:#667085; --border:#e5e7eb;
+  --accent:#006241; --accent-weak:rgba(0,98,65,.12); --radius:14px; --shadow:0 10px 30px rgba(0,0,0,.08);
+}
+*{box-sizing:border-box}
+html,body,#app{height:100%}
+body{margin:0;background:var(--bg);color:var(--text);font-family:ui-sans-serif,system-ui,Segoe UI,Roboto,Helvetica,Arial}
+a{color:var(--accent);text-decoration:none}
+.container{max-width:1100px;margin:0 auto;padding:24px}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:16px}
+.header{position:sticky;top:0;background:rgba(255,255,255,.9);backdrop-filter:saturate(140%) blur(8px);border-bottom:1px solid var(--border);}
+.header-inner{display:flex;align-items:center;justify-content:space-between;gap:12px;max-width:1100px;margin:0 auto;padding:12px 16px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800}
+.dot{width:10px;height:10px;border-radius:999px;background:var(--accent)}
+.nav{display:flex;gap:8px}
+button{display:inline-flex;align-items:center;gap:6px;border-radius:10px;border:1px solid var(--border);padding:10px 14px;background:var(--accent);color:#fff;font-weight:600;cursor:pointer;box-shadow:0 8px 18px rgba(0,98,65,.22)}
+button.secondary{background:#fff;color:var(--text)}
+input,select{padding:10px 12px;border:1px solid var(--border);border-radius:10px}
+.badge{display:inline-flex;align-items:center;gap:6px;background:var(--accent-weak);color:var(--accent);padding:6px 10px;border-radius:999px;font-size:.85rem}
+.table{width:100%;border-collapse:collapse}
+.table th,.table td{padding:10px 12px;border-bottom:1px solid var(--border);text-align:left}
+.table th{color:var(--muted);text-transform:uppercase;letter-spacing:.02em;font-size:.78rem}
+.toolbar{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.footer-fab{position:fixed;right:16px;bottom:16px;z-index:1000}
+
+}
+
+
+
+/* === Mobile enhancements === */
+@media (max-width: 640px){
+  .container{ padding: 12px; }
+  .card{ padding: 12px; }
+  .header-inner{ flex-wrap: wrap; gap: 8px; }
+  .brand{ width: 100%; justify-content: space-between; }
+  .nav{ width: 100%; overflow-x: auto; padding-bottom: 6px; }
+  .nav::-webkit-scrollbar{ height: 6px; }
+  .toolbar{ width: 100%; justify-content: space-between; }
+  .toolbar > * { flex: 1 1 auto; }
+  .toolbar a, .toolbar button{ justify-content: center; }
+  .badge{ font-size: .8rem; }
+
+  /* Tables → stacked cards */
+  .table{ display: block; width: 100%; }
+  .table thead{ display: none; }
+  .table tbody{ display: block; }
+  .table tr{ display: block; background: #fff; border:1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); margin-bottom: 12px; }
+  .table td{ display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 10px 12px; border-bottom: 1px solid var(--border); }
+  .table td:last-child{ border-bottom: 0; }
+  .table td::before{ content: attr(data-label); color: var(--muted); font-weight: 600; margin-right: 10px; }
+  code{ word-break: break-all; }
+
+  /* Detail view grid stacks */
+  .grid-2{ grid-template-columns: 1fr; }
+}
+
+
+/* --- Mobile header layout improvements --- */
+@media (max-width: 640px){
+  .header-inner{ flex-wrap: wrap; align-items: center; }
+  .header-inner .brand{ order:1; width:100%; display:flex; justify-content: space-between; }
+  .header-inner .nav{ order:2; width:100%; display:flex; gap:8px; overflow-x:auto; white-space: nowrap; -webkit-overflow-scrolling: touch; padding-bottom: 6px; }
+  .header-inner .nav button{ flex:0 0 auto; }
+  .header-inner .toolbar{ order:3; width:100%; display:flex; justify-content: flex-end; }
+}
+
+
+/* --- Mobile header: brand left + logout right on same row; tabs below --- */
+@media (max-width: 640px){
+  .header-inner{
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-areas:
+      "brand toolbar"
+      "nav nav";
+    align-items: center;
+    gap: 8px;
+  }
+  .header-inner .brand{ grid-area: brand; width: auto; justify-content: flex-start; }
+  .header-inner .toolbar{ grid-area: toolbar; width: auto; justify-content: flex-end; }
+  .header-inner .nav{
+    grid-area: nav;
+    width: 100%;
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 6px;
+  }
+  .header-inner .nav button{ flex: 0 0 auto; }
+}
+
+
+/* --- Tablet header: brand left + logout right on same row; tabs below --- */
+@media (min-width: 641px) and (max-width: 1024px){
+  .header-inner{
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-areas:
+      "brand toolbar"
+      "nav nav";
+    align-items: center;
+    gap: 10px;
+  }
+  .header-inner .brand{ grid-area: brand; width: auto; justify-content: flex-start; }
+  .header-inner .toolbar{ grid-area: toolbar; width: auto; justify-content: flex-end; }
+  .header-inner .nav{
+    grid-area: nav;
+    width: 100%;
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 6px;
+  }
+  .header-inner .nav button{ flex: 0 0 auto; }
+}
